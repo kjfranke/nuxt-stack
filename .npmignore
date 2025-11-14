@@ -1,0 +1,4 @@
+# Exclude files within src/base if needed
+src/base/.nuxt/
+src/base/.env
+src/base/node_modules/

@@ -1,0 +1,26 @@
+  #app,
+  .app{
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+  }
+
+  .app__header {
+      box-shadow: 0 0 2px 0 #939393;
+      flex: 0 0 auto;
+      position: fixed; /* not used on table elements */
+      top: 0;
+      transition: transform 0.1s linear;
+      width: 100%;
+      z-index: var(--z-index-header);
+  }
+
+  .app__main {
+      flex: 1 0 auto;
+  }
+
+  .app__footer {
+      overflow: hidden;
+      position: relative;
+      z-index: var(--z-index-footer);
+  }

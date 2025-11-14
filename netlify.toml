@@ -1,0 +1,26 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Content-Security-Policy = "default-src 'self'; base-uri 'none'; font-src 'self'; img-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; prefetch-src 'self'; manifest-src 'self'; frame-ancestors 'self'; form-action 'self'; require-trusted-types-for 'script';"
+    Content-Security-Policy = "default-src 'self'; frame-src https:; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.iconify.design; img-src 'self' data:;"
+    Feature-Policy = "geolocation 'none';"
+    Referrer-Policy = "no-referrer, strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubdomains; preload"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+
+[build]
+  command = "npm run generate"
+  publish = "src/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[dev]
+  command = "npm run dev:nuxt"
+  targetPort = 9229
+  port = 3000
+  framework = "#custom"
+  autoLaunch = false
+  jwtRolePath = "app_metadata.authorization.roles"

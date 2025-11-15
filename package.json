@@ -44,11 +44,12 @@
   },
   "scripts": {
     "build": "cd src/base && npx nuxi build",
+    "build:netlify": "cd src/base && npx nuxi prepare && npx nuxi generate",
     "dev": "netlify dev",
     "dev:nuxt": "cd src/base && npx nuxi dev",
     "generate": "cd src/base && npx nuxi generate",
     "preview": "cd src/base && npx nuxi preview",
-    "postinstall": "npm run browserslist && cd src/base && npx nuxi prepare",
+    "postinstall": "npm run browserslist",
     "version": "changeset version",
     "changeset": "changeset",
     "lint": "npx lint-staged",

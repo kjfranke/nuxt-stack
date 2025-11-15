@@ -11,13 +11,13 @@
     X-XSS-Protection = "1; mode=block"
 
 [build]
-  command = "cd src/base && npx nuxi prepare && npx nuxi generate"
-  publish = "src/base/.output/public"
+  base = "src/base"
+  command = "npm ci && npx nuxi generate"
+  publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "24"
   SECRETS_SCAN_ENABLED = "false"
-  NPM_FLAGS = "--ignore-scripts"
 
 [dev]
   command = "npm run dev:nuxt"

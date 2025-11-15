@@ -11,11 +11,11 @@
     X-XSS-Protection = "1; mode=block"
 
 [build]
-  command = "npm run generate"
-  publish = "src/base/dist"
+  command = "cd src/base && npm run generate"
+  publish = "src/base/.output/public"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
 [dev]
   command = "npm run dev:nuxt"

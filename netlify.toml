@@ -11,6 +11,7 @@
     X-XSS-Protection = "1; mode=block"
 
 [build]
+  base = "src/base"
   command = "npm run generate"
   publish = ".output/public"
 

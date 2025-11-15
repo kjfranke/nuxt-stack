@@ -12,7 +12,7 @@
 
 [build]
   command = "cd src/base && npm run generate"
-  publish = "src/base/.output/public"
+  publish = "src/base/dist"
 
 [build.environment]
   NODE_VERSION = "24"

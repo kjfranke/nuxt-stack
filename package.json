@@ -13,15 +13,15 @@
     "url": "https://github.com/kjfranke/nuxt-stack/issues"
   },
   "engines": {
-    "npm": ">=11.0.0",
-    "node": ">=24.0.0"
+    "npm": ">=10.0.0",
+    "node": ">=22.0.0"
   },
   "type": "module",
   "exports": {
-    ".": "./src/base/nuxt.config.ts"
+    ".": "./base/nuxt.config.ts"
   },
   "files": [
-    "src"
+    "base"
   ],
   "keywords": [
     "nuxt",
@@ -39,22 +39,22 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint src --fix --no-warn-ignored",
-    "*.{css,vue}": "stylelint src/**/*.{vue,css} --fix"
+    "*.{js,ts,vue}": "eslint base --fix --no-warn-ignored",
+    "*.{css,vue}": "stylelint base/**/*.{vue,css} --fix"
   },
   "scripts": {
-    "build": "nuxt build ./src/base",
+    "build": "nuxt build ./base",
     "dev": "netlify dev",
-    "dev:nuxt": "nuxt dev ./src/base",
-    "generate": "nuxt generate ./src/base",
-    "preview": "nuxt preview ./src/base",
-    "postinstall": "npm run browserslist && nuxt prepare ./src/base",
+    "dev:nuxt": "nuxt dev ./base",
+    "generate": "nuxt generate ./base",
+    "preview": "nuxt preview ./base",
+    "postinstall": "npm run browserslist && nuxt prepare ./base",
     "version": "changeset version",
     "changeset": "changeset",
     "lint": "npx lint-staged",
     "lint:all": "npm run lint:style && npm run lint:js",
-    "lint:js": "eslint src --fix --no-warn-ignored",
-    "lint:style": "stylelint src/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
+    "lint:js": "eslint base --fix --no-warn-ignored",
+    "lint:style": "stylelint base/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
     "browserslist": "npx browserslist > ./browserslist.txt"
   },
   "dependencies": {

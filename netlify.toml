@@ -11,9 +11,8 @@
     X-XSS-Protection = "1; mode=block"
 
 [build]
-  base = "src/base"
-  command = "npm ci && npx nuxi generate"
-  publish = ".output/public"
+  command = "npm run generate"
+  publish = "base/dist"
 
 [build.environment]
   NODE_VERSION = "24"

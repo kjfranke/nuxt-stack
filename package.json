@@ -43,12 +43,12 @@
     "*.{css,vue}": "stylelint src/**/*.{vue,css} --fix"
   },
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build ./src/base",
     "dev": "netlify dev",
-    "dev:nuxt": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "npm run browserslist && nuxt prepare",
+    "dev:nuxt": "nuxt dev ./src/base",
+    "generate": "nuxt generate ./src/base",
+    "preview": "nuxt preview ./src/base",
+    "postinstall": "npm run browserslist && nuxt prepare ./src/base",
     "version": "changeset version",
     "changeset": "changeset",
     "lint": "npx lint-staged",

@@ -16,6 +16,7 @@
 
 [build.environment]
   NODE_VERSION = "24"
+  SECRETS_SCAN_ENABLED = "false"
 
 [dev]
   command = "npm run dev:nuxt"

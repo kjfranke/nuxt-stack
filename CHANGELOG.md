@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- 03d99b5: Initial release of @kjfranke/nuxt-stack
+
+  Features:
+
+  - Nuxt 4.2 base layer with performance optimizations
+  - Optional devtools layer for design system development
+  - Custom ~layers alias for cross-layer imports
+  - Environment-based configuration (lang, devtools, allowed hosts)
+  - Pre-configured modules: @nuxt/fonts, @nuxt/icon, @nuxt/image, nuxt-vitalizer
+  - ESLint and Stylelint setup
+  - Netlify deployment ready
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -10,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-11-14
 
 ### Added
+
 - Initial release of @kjfranke/nuxt-stack
 - Nuxt 4.2.1 base layer configuration
 - Performance optimizations:

@@ -1,5 +1,5 @@
 import compat from 'eslint-plugin-compat'
-import withNuxt from './src/.nuxt/eslint.config.mjs'
+import withNuxt from './src/base/.nuxt/eslint.config.mjs'
 
 /*
 Nuxt override modules

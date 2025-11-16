@@ -18,10 +18,10 @@
   },
   "type": "module",
   "exports": {
-    ".": "./base/nuxt.config.ts"
+    ".": "./src/base/nuxt.config.ts"
   },
   "files": [
-    "base"
+    "src"
   ],
   "keywords": [
     "nuxt",
@@ -39,22 +39,22 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint base --fix --no-warn-ignored",
-    "*.{css,vue}": "stylelint base/**/*.{vue,css} --fix"
+    "*.{js,ts,vue}": "eslint src/base --fix --no-warn-ignored",
+    "*.{css,vue}": "stylelint src/base/**/*.{vue,css} --fix"
   },
   "scripts": {
-    "build": "nuxt build ./base",
+    "build": "nuxt build ./src/base",
     "dev": "netlify dev",
-    "dev:nuxt": "nuxt dev ./base",
-    "generate": "nuxt generate ./base",
-    "preview": "nuxt preview ./base",
+    "dev:nuxt": "nuxt dev ./src/base",
+    "generate": "nuxt generate ./src/base",
+    "preview": "nuxt preview ./src/base",
     "postinstall": "npm run browserslist && nuxt prepare",
     "version": "changeset version",
     "changeset": "changeset",
     "lint": "npx lint-staged",
     "lint:all": "npm run lint:style && npm run lint:js",
-    "lint:js": "eslint base --fix --no-warn-ignored",
-    "lint:style": "stylelint base/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
+    "lint:js": "eslint src --fix --no-warn-ignored",
+    "lint:style": "stylelint src/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
     "browserslist": "npx browserslist > ./browserslist.txt"
   },
   "dependencies": {

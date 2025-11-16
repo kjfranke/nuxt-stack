@@ -12,7 +12,7 @@
 
 [build]
   command = "npm run generate"
-  publish = "base/dist"
+  publish = "src/base/dist"
 
 [build.environment]
   NODE_VERSION = "24"

@@ -2,3 +2,6 @@
 src/base/.nuxt/
 src/base/.env
 src/base/node_modules/
+
+# Exclude examples (reference only, not for distribution)
+examples/

@@ -1,0 +1,30 @@
+{
+  "name": "test-stack",
+  "type": "module",
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint src --fix --no-warn-ignored",
+    "*.{css,vue}": "stylelint src/**/*.{vue,css} --fix"
+  },
+  "scripts": {
+    "build": "nuxt build ./src",
+    "dev": "netlify dev",
+    "dev:nuxt": "nuxt dev ./src",
+    "generate": "nuxt generate ./src",
+    "preview": "nuxt preview ./src",
+    "postinstall": "npm run browserslist && nuxt prepare",
+    "lint": "npx lint-staged",
+    "lint:all": "npm run lint:style && npm run lint:js",
+    "lint:js": "eslint src --fix --no-warn-ignored",
+    "lint:style": "stylelint src/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
+    "browserslist": "npx browserslist > ./browserslist.txt"
+  },
+  "dependencies": {
+    "@kjfranke/nuxt-stack": "github:kjfranke/nuxt-stack"
+  }
+}

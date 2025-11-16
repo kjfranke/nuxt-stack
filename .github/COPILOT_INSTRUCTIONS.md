@@ -8,19 +8,73 @@ This is **@kjfranke/nuxt-stack** - a reusable Nuxt 4 base layer distributed as a
 
 ### Key Characteristics
 - **Package name**: `@kjfranke/nuxt-stack`
+- **Current version**: v0.2.0
 - **Purpose**: Reusable Nuxt layer with performance optimizations and modern tooling
 - **Main export**: `src/base/nuxt.config.ts`
+- **Installation**: `npm install github:kjfranke/nuxt-stack#v0.2.0`
 - **Usage**: Other projects extend this via `extends: ['@kjfranke/nuxt-stack']`
 - **Repository**: https://github.com/kjfranke/nuxt-stack
 
 ### What's Included in the Package
 - `src/base/` - The core Nuxt layer (configurations, modules, base app structure)
+- `src/devtools/` - Optional devtools layer (enabled via NUXT_PUBLIC_DEVTOOLS_ENABLED)
 - README, LICENSE, CHANGELOG for documentation
 
 ### What's NOT in the Package (Reference Only)
 - Project-specific configs (netlify.toml, eslint.config.mjs, stylelint.config.mjs)
 - These are available in the GitHub repo for users to reference and copy if needed
 - Development scripts and tools
+
+## Environment Configuration
+
+The base layer supports environment-based configuration via these variables:
+
+### Available Environment Variables
+
+1. **NUXT_PUBLIC_DEVTOOLS_ENABLED** (default: disabled)
+   - Set to `"enabled"` to load the devtools layer
+   - Controls whether `src/devtools/` layer is extended
+   - Useful for development/design system work
+
+2. **NUXT_PUBLIC_LANG** (default: `"en"`)
+   - Sets the HTML lang attribute
+   - Example: `"nl"`, `"fr"`, `"de"`
+
+3. **VITE_ALLOWED_HOSTS** (default: empty)
+   - Comma-separated list of allowed dev server hosts
+   - Example: `"localhost,192.168.1.100"`
+   - Only needed for development with specific host configurations
+
+### Using Environment Variables
+
+Copy `node_modules/@kjfranke/nuxt-stack/src/base/.env.dist` to your project root as `.env` and configure as needed.
+
+## Directory Structure
+
+```
+nuxt-stack/
+├── src/
+│   ├── base/              # Core Nuxt layer (exported as main package entry)
+│   │   ├── app/           # Nuxt app directory (pages, layouts, components)
+│   │   ├── assets/        # CSS, fonts, and other static assets
+│   │   ├── modules/       # Custom Nuxt modules
+│   │   │   ├── 00_layer-alias/    # ~layers alias implementation
+│   │   │   ├── 10_layer-postcss/  # PostCSS configuration
+│   │   │   └── 10_devtools-dummy/ # Devtools placeholder components
+│   │   ├── public/        # Public static files
+│   │   ├── .env.dist      # Environment variable template
+│   │   └── nuxt.config.ts # Main Nuxt configuration
+│   └── devtools/          # Optional devtools layer (design system)
+│       ├── app/           # Devtools-specific pages/components
+│       └── nuxt.config.ts # Devtools layer configuration
+├── .github/
+│   └── workflows/
+│       └── release.yml    # Automated version PR creation
+├── netlify.toml           # Netlify deployment config (reference only)
+├── package.json           # Package configuration
+├── README.md              # Installation and usage docs
+└── CHANGELOG.md           # Version history
+```
 
 ## Documentation Lookup Strategy
 
@@ -160,26 +214,32 @@ import Navigation from './Navigation.vue'
 
 **Note**: This is a recommended pattern. Consumer projects may organize CSS differently.
 
-**Component CSS Import:**
+**Component CSS Import (with ~layers alias - recommended):**
 ```vue
 <style>
-@import url('~/components/ComponentName.css');
+@import url('~layers/app/components/ComponentName.css');
 </style>
 ```
 
 **Page CSS Import:**
 ```vue
 <style>
-@import url('~/pages/pagename.css');
+@import url('~layers/app/pages/pagename.css');
 </style>
 ```
 
 **Layout CSS Import:**
 ```vue
 <style>
-@import url('~/layouts/layoutname.css');
+@import url('~layers/app/layouts/layoutname.css');
 </style>
 ```
+
+**Note on ~layers alias:**
+- The `~layers` alias resolves imports across all Nuxt layers (base, devtools, consumer project)
+- Uses custom resolver that checks each layer for the file and returns the first match
+- Implemented in `src/base/modules/00_layer-alias/index.ts`
+- Compatible with Nuxt 4.2+ (updated to preserve Nuxt's internal aliases)
 
 **Global Assets Import (app.vue):**
 ```vue

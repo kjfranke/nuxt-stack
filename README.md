@@ -55,12 +55,42 @@ Or add to your `package.json`:
 ### Install Specific Version
 
 ```bash
-# Install from specific tag
-npm install github:kjfranke/nuxt-stack#v0.1.0
+# Install latest release
+npm install github:kjfranke/nuxt-stack#v0.2.0
 
-# Install from main branch (latest)
+# Install from main branch (development)
 npm install github:kjfranke/nuxt-stack
 ```
+
+## Quick Start
+
+1. **Install the package**:
+   ```bash
+   npm install github:kjfranke/nuxt-stack#v0.2.0
+   ```
+
+2. **Create or update `nuxt.config.ts`**:
+   ```typescript
+   export default defineNuxtConfig({
+     extends: ['@kjfranke/nuxt-stack']
+   })
+   ```
+
+3. **Copy environment variables** (optional):
+   ```bash
+   cp node_modules/@kjfranke/nuxt-stack/src/base/.env.dist .env
+   ```
+
+4. **Start developing**:
+   ```bash
+   npm run dev
+   ```
+
+## Examples
+
+Check out the `examples/` directory in the [GitHub repository](https://github.com/kjfranke/nuxt-stack/tree/main/examples) for complete working examples:
+
+- **[basic-project](examples/basic-project/)** - Full project example with custom configuration
 
 ## Usage
 
@@ -108,6 +138,55 @@ The base layer provides:
 - Configuration files (ESLint, Stylelint, TypeScript, Browserslist)
 
 ## Configuration
+
+### Environment Variables
+
+The base layer supports configuration through environment variables. Copy the template to get started:
+
+```bash
+cp node_modules/@kjfranke/nuxt-stack/src/base/.env.dist .env
+```
+
+Available variables:
+
+#### `NUXT_PUBLIC_DEVTOOLS_ENABLED`
+- **Default**: disabled
+- **Values**: `"enabled"` | disabled
+- **Description**: Enable the optional devtools layer for design system development
+- **Example**:
+  ```env
+  NUXT_PUBLIC_DEVTOOLS_ENABLED=enabled
+  ```
+
+#### `NUXT_PUBLIC_LANG`
+- **Default**: `"en"`
+- **Description**: Sets the HTML lang attribute
+- **Example**:
+  ```env
+  NUXT_PUBLIC_LANG=nl
+  ```
+
+#### `VITE_ALLOWED_HOSTS`
+- **Default**: empty
+- **Description**: Comma-separated list of allowed dev server hosts
+- **Example**:
+  ```env
+  VITE_ALLOWED_HOSTS=localhost,192.168.1.100
+  ```
+
+### Custom Alias: `~layers`
+
+The stack includes a custom `~layers` alias that resolves imports across all Nuxt layers. This is especially useful for CSS imports:
+
+```vue
+<style>
+/* Import CSS from any layer */
+@import url('~layers/app/components/Header.css');
+@import url('~layers/app/pages/index.css');
+</style>
+```
+
+The alias automatically checks each layer for the file and returns the first match, making it easy to share styles across layers without worrying about relative paths.
 
 ### Image Optimization
 
@@ -206,6 +285,41 @@ The package includes these npm scripts:
 - `lint:js` - ESLint only
 - `lint:style` - Stylelint only
 - `browserslist` - Update browser support list
+
+## Troubleshooting
+
+### Installation Issues
+
+**Problem**: `ENOENT: spawn git` error when installing
+- **Solution**: Use the full URL: `npm install git+https://github.com/kjfranke/nuxt-stack.git`
+- **Cause**: Some environments don't support the `github:` shorthand
+
+**Problem**: Missing dependencies in consuming project
+- **Solution**: All required dependencies are included in the package's `dependencies` field and will be installed automatically
+- **Note**: If you see missing packages, try deleting `node_modules` and `package-lock.json`, then run `npm install` again
+
+### Build Issues
+
+**Problem**: Module not found errors during build
+- **Solution**: Run `npm run postinstall` or `nuxt prepare` to regenerate Nuxt's type definitions
+- **Check**: Ensure your `nuxt.config.ts` extends the layer: `extends: ['@kjfranke/nuxt-stack']`
+
+**Problem**: CSS imports not resolving
+- **Solution**: Use the `~layers` alias for cross-layer CSS imports
+- **Example**: `@import url('~layers/app/components/Header.css');`
+
+### Development Issues
+
+**Problem**: Changes to layer configuration not reflecting
+- **Solution**: Clear `.nuxt` cache and restart dev server:
+  ```bash
+  rm -rf .nuxt node_modules/.cache
+  npm run dev
+  ```
+
+**Problem**: Devtools layer not loading
+- **Check**: Verify `NUXT_PUBLIC_DEVTOOLS_ENABLED=enabled` in your `.env` file
+- **Note**: The devtools layer is disabled by default
 
 ## License
 

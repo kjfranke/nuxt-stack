@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/" >/dev/null && pwd )"
+
+## Install frontend
+if [ ! -f "$DIR/src/.env" ]
+then
+    cp $DIR/src/.env.development $DIR/src/.env
+    echo -e "\nCheck the contents of file '$DIR/src/.env'\n"
+fi
+
+cd $DIR
+b83 -i install.sh

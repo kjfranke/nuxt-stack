@@ -5,5 +5,5 @@
 </template>
 
 <style>
-@import url('./design-system.css');
+@import url('~layers/app/pages/design-system.css');
 </style>

@@ -28,5 +28,5 @@ const pageClass = computed(() => (route.meta as RouteMeta)?.pageClass || 'tpl-cm
 </template>
 
 <style>
-@import url('~/layouts/default.css');
+@import url('~layers/app/layouts/default.css');
 </style>

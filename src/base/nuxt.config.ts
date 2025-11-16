@@ -1,15 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { process } from 'std-env'
 
-const config = defineNuxtConfig({
+export default defineNuxtConfig({
   $meta: {
     name: 'nuxt-stack',
   },
-  // extends: process.env.NUXT_PUBLIC_DEVTOOLS_ENABLED === 'enabled'
-  //   ? [
-  //       '../devtools',
-  //     ]
-  //   : [],
+  extends: process.env.NUXT_PUBLIC_DEVTOOLS_ENABLED === 'enabled'
+    ? [
+        '../devtools',
+      ]
+    : [],
   modules: [
     '@nuxt/hints',
     '@nuxt/eslint',
@@ -135,5 +135,3 @@ const config = defineNuxtConfig({
     },
   }
 })
-
-export default config

@@ -1,6 +1,6 @@
 {
   "name": "@kjfranke/nuxt-stack",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A production-ready Nuxt 4 stack with performance optimizations, modern tooling, and best practices built-in. Extend via Nuxt layers.",
   "author": "Keesjan Franke",
   "license": "MIT",

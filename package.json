@@ -48,7 +48,7 @@
     "dev:nuxt": "nuxt dev ./src/base",
     "generate": "nuxt generate ./src/base",
     "preview": "nuxt preview ./src/base",
-    "postinstall": "npm run browserslist && nuxt prepare",
+    "postinstall": "npm run browserslist && nuxt prepare ./src/base",
     "version": "changeset version",
     "changeset": "changeset",
     "lint": "npx lint-staged",

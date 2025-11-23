@@ -12,9 +12,7 @@ export default defineNuxtModule({
     },
   },
   setup(_moduleOptions, nuxt) {
-
-    try{
-
+    try {
       const layersCopy = [...nuxt.options._layers]
 
       nuxt.options.runtimeConfig.layers = layersCopy.map((layer) => {

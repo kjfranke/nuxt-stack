@@ -2,9 +2,6 @@
 import { process } from 'std-env'
 
 export default defineNuxtConfig({
-  $meta: {
-    name: 'nuxt-stack',
-  },
   extends: process.env.NUXT_PUBLIC_DEVTOOLS_ENABLED === 'enabled'
     ? [
         '../devtools',
@@ -20,17 +17,8 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     'nuxt-security',
   ],
-  icon: {
-    class: 'icon',
-    cssLayer: 'base',
-    cssSelectorPrefix: '',
-    customCollections: [
-      {
-        prefix: 'icon',
-        dir: './app/assets/icons',
-        recursive: true,
-      },
-    ],
+  $meta: {
+    name: 'nuxt-stack',
   },
   // fonts: {
   //   families: [
@@ -39,9 +27,53 @@ export default defineNuxtConfig({
   //   ],
   // },
   devtools: { enabled: true },
-  compatibilityDate: '2025-07-15',
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: process.env.NUXT_PUBLIC_LANG || 'en',
+      },
+      title: 'Project',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'dns-prefetch', href: 'https://api.netlify.com' },
+      ],
+    },
+    layoutTransition: false,
+    pageTransition: false,
+  },
+  router: {
+    options: {
+      // Improve route-based code splitting
+      strict: false,
+    },
+  },
+  site: {
+    // Site URL and name should be configured via environment variables in consuming projects
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://example.com',
+    name: process.env.NUXT_PUBLIC_SITE_NAME || 'Nuxt Stack',
+  },
   devServer: {
     port: 9229,
+  },
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      },
+    },
+    inlineSSRStyles: true,
+    payloadExtraction: false, // Reduce inline data in HTML
+    componentIslands: true, // Enable component islands for better code splitting
+  },
+  compatibilityDate: '2025-07-15',
+  nitro: {
+    compressPublicAssets: true,
+    minify: true,
   },
   vite: {
     server: {
@@ -71,61 +103,52 @@ export default defineNuxtConfig({
       drop: ['console', 'debugger'],
     },
   },
-  experimental: {
-    defaults: {
-      nuxtLink: {
-        trailingSlash: 'append',
-      }
-    },
-    inlineSSRStyles: true,
-    payloadExtraction: false, // Reduce inline data in HTML
-    componentIslands: true, // Enable component islands for better code splitting
-  },
-  router: {
-    options: {
-      // Improve route-based code splitting
-      strict: false,
-    },
-  },
   eslint: {
     checker: false,
     config: {
       stylistic: true,
     },
   },
-  app: {
-    head: {
-      htmlAttrs: {
-        lang: process.env.NUXT_PUBLIC_LANG || 'en',
+  icon: {
+    class: 'icon',
+    cssLayer: 'base',
+    cssSelectorPrefix: '',
+    customCollections: [
+      {
+        prefix: 'icon',
+        dir: './app/assets/icons',
+        recursive: true,
       },
-      title: 'Project',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '' },
-      ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'dns-prefetch', href: 'https://api.netlify.com' },
-      ],
-    },
-    layoutTransition: false,
-    pageTransition: false,
+    ],
   },
-  nitro: {
-    compressPublicAssets: true,
-    minify: true,
+  image: {
+    // Uses IPX (Sharp) in dev, Netlify CDN in production automatically
+    provider: 'ipx',
+    format: ['avif', 'webp', 'jpeg'],
+    quality: 80,
+    screens: {
+      'xs': 320,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1280,
+      '2xl': 1536,
+    },
+  },
+  robots: {
+    // Block AI bots from scraping content
+    blockAiBots: true,
   },
   security: {
     headers: {
       contentSecurityPolicy: {
-        'default-src': ["'self'"],
-        'base-uri': ["'none'"],
-        'object-src': ["'none'"],
-        'script-src': ["'self'", "'unsafe-inline'"], // unsafe-inline needed for Nuxt
-        'style-src': ["'self'", "'unsafe-inline'"], // unsafe-inline needed for Nuxt
-        'connect-src': ["'self'", 'https://api.iconify.design'],
-        'img-src': ["'self'", 'data:'],
+        'default-src': ['\'self\''],
+        'base-uri': ['\'none\''],
+        'object-src': ['\'none\''],
+        'script-src': ['\'self\'', '\'unsafe-inline\''], // unsafe-inline needed for Nuxt
+        'style-src': ['\'self\'', '\'unsafe-inline\''], // unsafe-inline needed for Nuxt
+        'connect-src': ['\'self\'', 'https://api.iconify.design'],
+        'img-src': ['\'self\'', 'data:'],
         'frame-src': ['https:'],
       },
       referrerPolicy: 'no-referrer, strict-origin-when-cross-origin',
@@ -142,15 +165,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  site: {
-    // Site URL and name should be configured via environment variables in consuming projects
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://example.com',
-    name: process.env.NUXT_PUBLIC_SITE_NAME || 'Nuxt Stack',
-  },
-  robots: {
-    // Block AI bots from scraping content
-    blockAiBots: true,
-  },
   sitemap: {
     // Exclude prerendered routes from sitemap sources (they're added via prerender)
     excludeAppSources: ['prerender'],
@@ -161,18 +175,4 @@ export default defineNuxtConfig({
     // Remove render-blocking entry CSS (since we inline styles)
     disableStylesheets: 'entry',
   },
-  image: {
-    // Uses IPX (Sharp) in dev, Netlify CDN in production automatically
-    provider: 'ipx',
-    format: ['avif', 'webp', 'jpeg'],
-    quality: 80,
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      '2xl': 1536,
-    },
-  }
 })

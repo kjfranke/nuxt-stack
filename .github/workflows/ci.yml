@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare Nuxt
+        run: npx nuxi prepare ./src/base
+
       - name: Run ESLint
         run: npm run lint:js
 
@@ -47,6 +50,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare Nuxt
+        run: npx nuxi prepare ./src/base
+
       - name: Build project
         run: npm run build
 
@@ -69,6 +75,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Prepare Nuxt
+        run: npx nuxi prepare ./src/base
 
       - name: Run type check
         run: npx nuxi typecheck ./src/base

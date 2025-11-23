@@ -6,5 +6,5 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag: string) => ['baseline-status'].includes(tag),
     },
-  }
+  },
 })

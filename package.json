@@ -39,7 +39,10 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint src/base --fix --no-warn-ignored",
+    "*.{js,ts,vue}": [
+      "eslint src/base --fix --no-warn-ignored",
+      "npm run typecheck"
+    ],
     "*.{css,vue}": "stylelint src/base/**/*.{vue,css} --fix"
   },
   "scripts": {
@@ -55,6 +58,8 @@
     "lint:all": "npm run lint:style && npm run lint:js",
     "lint:js": "eslint src --fix --no-warn-ignored",
     "lint:style": "stylelint src/**/*.{vue,css} --fix --ignore-path .gitignore --ignore-path .stylelintignore",
+    "typecheck": "NUXT_PUBLIC_DEVTOOLS_ENABLED=disabled nuxi prepare ./src/base && NUXT_PUBLIC_DEVTOOLS_ENABLED=disabled nuxi typecheck ./src/base",
+    "test": "npm run lint:all && npm run typecheck",
     "browserslist": "npx browserslist > ./browserslist.txt"
   },
   "dependencies": {

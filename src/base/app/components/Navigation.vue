@@ -27,13 +27,13 @@ const navigation = computed(() => {
       )
       return entry
     })
-    .sort((a, b) => (a.meta.navigationOrder ?? 0) - (b.meta.navigationOrder ?? 0))
+    .sort((a, b) => ((a.meta?.navigationOrder ?? 0) as number) - ((b.meta?.navigationOrder ?? 0) as number))
 })
 
 const getSubnavigation = (parent: RouteWithMeta) => {
   return parent?.children
     ?.filter(entry => (entry.meta as RouteMeta).navigationOrder)
-    ?.sort((a, b) => (a.meta.navigationOrder ?? 0) - (b.meta.navigationOrder ?? 0))
+    ?.sort((a, b) => ((a.meta?.navigationOrder ?? 0) as number) - ((b.meta?.navigationOrder ?? 0) as number))
     || []
 }
 

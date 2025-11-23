@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '' },
+        { name: 'description', content: '' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -66,7 +66,6 @@ export default defineNuxtConfig({
         trailingSlash: 'append',
       },
     },
-    inlineSSRStyles: true,
     payloadExtraction: false, // Reduce inline data in HTML
     componentIslands: true, // Enable component islands for better code splitting
   },
@@ -117,7 +116,6 @@ export default defineNuxtConfig({
       {
         prefix: 'icon',
         dir: './app/assets/icons',
-        recursive: true,
       },
     ],
   },
@@ -151,7 +149,7 @@ export default defineNuxtConfig({
         'img-src': ['\'self\'', 'data:'],
         'frame-src': ['https:'],
       },
-      referrerPolicy: 'no-referrer, strict-origin-when-cross-origin',
+      referrerPolicy: 'strict-origin-when-cross-origin',
       strictTransportSecurity: {
         maxAge: 31536000,
         includeSubdomains: true,
@@ -166,8 +164,7 @@ export default defineNuxtConfig({
     },
   },
   sitemap: {
-    // Exclude prerendered routes from sitemap sources (they're added via prerender)
-    excludeAppSources: ['prerender'],
+    // Sitemap configuration for static sites
   },
   vitalizer: {
     // Disable prefetch for dynamic imports (enabled by default)

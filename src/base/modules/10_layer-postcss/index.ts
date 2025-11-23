@@ -47,7 +47,14 @@ export default defineNuxtModule({
     }
 
     if (!nuxt.options?.postcss) {
-      nuxt.options.postcss = {}
+      nuxt.options.postcss = {
+        plugins: {},
+        order: [],
+      }
+    }
+
+    if (!nuxt.options.postcss.plugins) {
+      nuxt.options.postcss.plugins = {}
     }
 
     nuxt.options.postcss = {

@@ -16,7 +16,7 @@ export default defineNuxtModule({
       const layersCopy = [...nuxt.options._layers]
 
       nuxt.options.runtimeConfig.layers = layersCopy.map((layer) => {
-        const name = layer?.config?.$meta?.name || layer.config.rootDir.replace('/src', '').split('/').at(-1)
+        const name = (layer?.config as any)?.$meta?.name || layer.config.rootDir.replace('/src', '').split('/').at(-1)
         return {
           name,
           alias: `#layers/${name}`,
@@ -27,10 +27,10 @@ export default defineNuxtModule({
       })
 
       const customResolver = (source: string) => {
-        let file = source
+        let file: string = source
 
         if (source.includes('?')) {
-          file = source.split('?')[0]
+          file = source.split('?')[0] || source
         }
 
         for (const layer of layersCopy) {

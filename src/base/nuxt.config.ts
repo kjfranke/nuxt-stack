@@ -11,12 +11,14 @@ export default defineNuxtConfig({
       ]
     : [],
   modules: [
+    '@nuxtjs/seo',
     '@nuxt/hints',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
     'nuxt-vitalizer',
+    'nuxt-security',
   ],
   icon: {
     class: 'icon',
@@ -113,6 +115,45 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     minify: true,
+  },
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'default-src': ["'self'"],
+        'base-uri': ["'none'"],
+        'object-src': ["'none'"],
+        'script-src': ["'self'", "'unsafe-inline'"], // unsafe-inline needed for Nuxt
+        'style-src': ["'self'", "'unsafe-inline'"], // unsafe-inline needed for Nuxt
+        'connect-src': ["'self'", 'https://api.iconify.design'],
+        'img-src': ["'self'", 'data:'],
+        'frame-src': ['https:'],
+      },
+      referrerPolicy: 'no-referrer, strict-origin-when-cross-origin',
+      strictTransportSecurity: {
+        maxAge: 31536000,
+        includeSubdomains: true,
+        preload: true,
+      },
+      xContentTypeOptions: 'nosniff',
+      xFrameOptions: 'SAMEORIGIN',
+      xXSSProtection: '1; mode=block',
+      permissionsPolicy: {
+        geolocation: [],
+      },
+    },
+  },
+  site: {
+    // Site URL and name should be configured via environment variables in consuming projects
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://example.com',
+    name: process.env.NUXT_PUBLIC_SITE_NAME || 'Nuxt Stack',
+  },
+  robots: {
+    // Block AI bots from scraping content
+    blockAiBots: true,
+  },
+  sitemap: {
+    // Exclude prerendered routes from sitemap sources (they're added via prerender)
+    excludeAppSources: ['prerender'],
   },
   vitalizer: {
     // Disable prefetch for dynamic imports (enabled by default)

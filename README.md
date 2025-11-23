@@ -18,12 +18,24 @@ A production-ready Nuxt 4 foundation layer with performance optimizations, moder
 - **[@nuxt/image](https://github.com/nuxt/image)** - Automatic image optimization (AVIF, WebP, JPEG)
 - **[@nuxt/eslint](https://github.com/nuxt/eslint)** - ESLint integration with stylistic rules
 - **[nuxt-vitalizer](https://github.com/harlan-zw/nuxt-vitalizer)** - Resource hints optimization
+- **[nuxt-security](https://github.com/baroshem/nuxt-security)** - OWASP security patterns via HTTP headers
+- **[@nuxtjs/seo](https://nuxtseo.com)** - Comprehensive SEO suite (robots, sitemap, ogImage, schemaOrg)
 
 ### 🔒 Security
-- Netlify deployment configuration with security headers
-- Content Security Policy (CSP)
-- HSTS, X-Frame-Options, and other security headers
-- XSS protection
+- **nuxt-security** module with OWASP-recommended security headers
+- Content Security Policy (CSP) configured for Nuxt and Iconify
+- HSTS with preload support
+- XSS protection and frame options
+- Referrer policy and permissions policy
+- All security headers managed via Nitro middleware
+
+### 🔍 SEO & Meta
+- **@nuxtjs/seo** module for comprehensive SEO management
+- Automatic robots.txt generation with AI bot blocking
+- Sitemap.xml generation for static sites
+- OG Image generation for social sharing
+- Schema.org structured data support
+- SEO utilities for meta tags and canonical URLs
 
 ### 🎯 Developer Experience
 - TypeScript support
@@ -174,19 +186,89 @@ Available variables:
   VITE_ALLOWED_HOSTS=localhost,192.168.1.100
   ```
 
-### Custom Alias: `~layers`
+#### `NUXT_PUBLIC_SITE_URL`
+- **Default**: `"https://example.com"`
+- **Description**: Your production site URL for SEO features (robots.txt, sitemap.xml, OG images)
+- **Example**:
+  ```env
+  NUXT_PUBLIC_SITE_URL=https://mysite.com
+  ```
 
-The stack includes a custom `~layers` alias that resolves imports across all Nuxt layers. This is especially useful for CSS imports:
+#### `NUXT_PUBLIC_SITE_NAME`
+- **Default**: `"Nuxt Stack"`
+- **Description**: Site name for SEO and meta tags
+- **Example**:
+  ```env
+  NUXT_PUBLIC_SITE_NAME=My Awesome Site
+  ```
+
+### Custom Aliases: `~layers` and `~~layers`
+
+The stack includes custom aliases that resolve imports across all Nuxt layers:
+
+#### `~layers` - Layer App Directories
+Points to each layer's `app/` directory, useful for importing components, pages, and assets:
 
 ```vue
 <style>
-/* Import CSS from any layer */
-@import url('~layers/app/components/Header.css');
-@import url('~layers/app/pages/index.css');
+/* Import CSS from any layer's app directory */
+@import url('~layers/components/Header.css');
+@import url('~layers/pages/index.css');
+@import url('~layers/layouts/default.css');
 </style>
 ```
 
-The alias automatically checks each layer for the file and returns the first match, making it easy to share styles across layers without worrying about relative paths.
+#### `~~layers` - Layer Root Directories
+Points to each layer's root directory, useful for importing from modules or other layer resources:
+
+```typescript
+// Import from layer root
+import something from '~~layers/modules/myModule'
+```
+
+Both aliases automatically check each layer for the file and return the first match, making it easy to share code across layers without worrying about relative paths.
+
+### Security Configuration
+
+The stack uses **nuxt-security** for comprehensive security headers following OWASP best practices. Security is configured automatically, but you can customize it:
+
+```typescript
+export default defineNuxtConfig({
+  extends: ['@kjfranke/nuxt-stack'],
+
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', 'https://your-cdn.com'],
+        // Add your customizations
+      },
+      // Disable specific headers if needed
+      xFrameOptions: false,
+    },
+    // Per-route security
+    routeRules: {
+      '/api/**': {
+        security: {
+          headers: {
+            // Different CSP for API routes
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+**Default security headers:**
+- Content Security Policy (CSP) - Configured for Nuxt and Iconify
+- Strict-Transport-Security (HSTS) with preload
+- X-Content-Type-Options: nosniff
+- X-Frame-Options: SAMEORIGIN
+- X-XSS-Protection: 1; mode=block
+- Referrer-Policy: no-referrer, strict-origin-when-cross-origin
+- Permissions-Policy: geolocation disabled
+
+See [nuxt-security documentation](https://nuxt-security.vercel.app/) for advanced configuration.
 
 ### Image Optimization
 
@@ -306,7 +388,7 @@ The package includes these npm scripts:
 
 **Problem**: CSS imports not resolving
 - **Solution**: Use the `~layers` alias for cross-layer CSS imports
-- **Example**: `@import url('~layers/app/components/Header.css');`
+- **Example**: `@import url('~layers/components/Header.css');`
 
 ### Development Issues
 

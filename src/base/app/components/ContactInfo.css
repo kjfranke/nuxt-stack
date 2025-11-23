@@ -1,0 +1,21 @@
+    .contact-info__tel,
+    .contact-info__mail,
+    .contact-info__facebook,
+    .contact-info__instagram{
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .contact-info__tel .iconify,
+    .contact-info__mail .iconify,
+    .contact-info__facebook .iconify,
+    .contact-info__instagram .iconify{
+        bottom: 0;
+        color: var(--color-grays-6);
+        height: 1.1rem;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        width: 1.1rem;
+    }

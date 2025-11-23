@@ -1,0 +1,28 @@
+  .devtools {
+    /* placeholder */
+  }
+
+  .devtools__grid {
+    bottom: 0;
+    display: grid;
+    left: 0;
+    grid-gap: 0 2rem;
+    grid-area: devtools;
+    grid-template-areas: "devtools";
+    grid-template-columns: repeat(1, 1fr);
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+  }
+
+  .devtools__grid-column {
+    background: rgba(255, 0, 0, 0.1);
+  }
+
+  @media (--tablet-plus) {
+    .devtools__grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }

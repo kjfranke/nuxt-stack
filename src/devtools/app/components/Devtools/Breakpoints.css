@@ -1,0 +1,38 @@
+.breakpoints__headings {
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: center;
+}
+
+.breakpoints__heading {
+  flex: 1 1 auto;
+  width: 50%;
+}
+
+.breakpoints__heading--active {
+  font-weight: 700;
+}
+
+.query-line {
+  background: hsl(210, 100%, 75%);
+  border-radius: 2rem;
+  color: inherit;
+  display: block;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+}
+
+.query-line:nth-child(odd) {
+  background: hsl(120, 61%, 75%);
+}
+
+.query-line[class*='-*'] {
+  border-radius: 2rem 0 0 2rem;
+}
+
+.query-line[class*='mobile'] {
+  border-radius: 0 2rem 2rem 0;
+}

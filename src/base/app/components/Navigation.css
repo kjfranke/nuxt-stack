@@ -1,0 +1,133 @@
+.navigation{
+    margin: -0.5rem 0;
+    white-space: nowrap;
+}
+
+.navigation__list{
+    display: flex;
+}
+
+.navigation__item{
+    position: relative;
+}
+
+.navigation__link{
+    border-bottom: 0.2rem solid transparent;
+    color: var(--color-brand-2);
+    display: block;
+    font-family: 'Shadows Into Light', serif;
+    font-size: 1.8rem;
+    margin-bottom: -0.2rem;
+    padding: 1.4rem 0;
+    text-decoration: none;
+}
+
+.navigation__item:hover .navigation__link,
+.navigation__item:focus .navigation__link,
+.navigation__item:focus-within .navigation__link{
+    color: var(--color-brand-1);
+    border-color: currentColor;
+}
+
+@media (--mobile-tablet){
+
+    .navigation{
+        align-items: center;
+        display: flex;
+    }
+
+    .navigation__toggle{
+        height: 2rem;
+        position: relative;
+        width: 2rem;
+        z-index: 1;
+    }
+
+    .navigation__toggle .iconify{
+        color: var(--color-brand-1);
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .navigation__backdrop{
+        top: 4.8rem;
+    }
+
+    .navigation__panel{
+        background: var(--color-background-1);
+        bottom: 0;
+        transform: translateX(-100%);
+        left: 0;
+        max-width: 34rem;
+        padding: 2rem 2rem;
+        position: fixed;
+        top: 4.8rem;
+        transition: transform 300ms linear;
+        width: 90vw;
+    }
+
+    .navigation__list{
+        flex-direction: column;
+    }
+
+    .navigation--open .navigation__panel{
+        transform: translateX(0);
+    }
+}
+
+@media (--desktop-plus){
+
+    .navigation__toggle{
+        display: none;
+    }
+
+    .navigation__item{
+        position: relative;
+    }
+
+    .navigation__link{
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+.navigation-sub__list{
+    margin-top: 0.2rem;
+}
+
+.navigation-sub__link{
+    color: var(--color-brand-2);
+    display: block;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+}
+
+.navigation-sub__link:hover,
+.navigation-sub__link:focus{
+    color: var(--color-brand-1);
+    background: var(--color-background-3);
+}
+
+@media (--mobile-tablet){
+
+}
+
+@media (--desktop-plus){
+
+    .navigation-sub__list{
+        background: var(--color-background-1);
+        display: none;
+        left: 0;
+        min-width: 100%;
+        position: absolute;
+        top: 100%;
+        white-space: nowrap;
+    }
+
+    .navigation__item:hover .navigation-sub__list,
+    .navigation__item:focus .navigation-sub__list,
+    .navigation__item:focus-within .navigation-sub__list{
+        display: block;
+    }
+}

@@ -1,0 +1,45 @@
+.styleguide-sprite {
+  align-items: center;
+  /* stylelint-disable plugin/no-unsupported-browser-features */
+  background-image:
+    linear-gradient(45deg, rgba(204, 204, 204, 1) 25%, rgba(204, 204, 204, 0) 25%),
+    linear-gradient(-45deg, rgba(204, 204, 204, 1) 25%, rgba(204, 204, 204, 0) 25%),
+    linear-gradient(45deg, rgba(204, 204, 204, 0) 75%, rgba(204, 204, 204, 1) 75%),
+    linear-gradient(-45deg, rgba(204, 204, 204, 0) 75%, rgba(204, 204, 204, 1) 75%); /* not using transparent keyword */
+  /* stylelint-enable */
+  background-size: 1rem 1rem;
+  background-position: 0 0, 0 0.5rem, 0.5rem -0.5rem, -0.5rem 0;
+  font-size: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1.6rem -1.6rem -1.6rem -1.6rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.styleguide-sprite li {
+  margin: 1rem 2rem 1rem 2rem;
+}
+
+.styleguide-sprite button {
+  all: unset;
+  cursor: pointer;
+}
+
+.styleguide-sprite button:not(:disabled):hover,
+.styleguide-sprite button:not(:disabled):focus,
+.styleguide-sprite button:not(:disabled):active {
+  all: unset;
+  cursor: pointer;
+}
+
+.styleguide-sprite .iconify {
+  display: block;
+  height: 4rem;
+  margin: 0 auto 0.5rem auto !important;
+  width: 4rem;
+}
+
+.styleguide-sprite__label {
+  background: #fff;
+}

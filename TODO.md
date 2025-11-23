@@ -37,31 +37,35 @@
   - Updated COPILOT_INSTRUCTIONS with current version and structure
 
 - [ ] **Enhance Base Layer Features** - Add more utilities
-  - Add common composables
-  - Add base components (if applicable)
-  - Add more PostCSS utilities
+  - Add common composables (discover during project implementations)
+  - Add base components (discover during project implementations)
+  - Add more PostCSS utilities (discover during project implementations)
   - Document custom modules better
 
 ### Low Priority / Future Ideas
 
-- [ ] **Consider npm Publishing** - If wider distribution is needed
-  - Set up npm account
-  - Update workflows for npm publishing
-  - Update README for both GitHub and npm install methods
+- [ ] **Add Vitest Setup** - Testing infrastructure
+  - Install and configure Vitest
+  - Add example unit tests for composables
+  - Add example component tests
+  - Integrate with GitHub Actions CI workflow
+  - Document testing best practices
 
 - [ ] **Add More Devtools Features** - Expand the design system layer
-  - Document devtools layer usage
-  - Add more development utilities
-  - Create component showcase
+  - Document devtools layer usage (discover during project implementations)
+  - Add more development utilities (discover during project implementations)
+  - Create component showcase (discover during project implementations)
 
 - [x] **Create Example Projects** - ✅ DONE! Added example consumer projects
   - Added `examples/basic-project/` - Full project example
   - Examples demonstrate how to extend and use the layer
 
 - [ ] **Performance Monitoring** - Add tooling for tracking
-  - Lighthouse CI integration
-  - Bundle size monitoring
-  - Performance budgets
+  - Bundle analyzer integration (visualize bundle size)
+  - UnJS Bundle Runner for runtime performance
+  - Add performance budget warnings in build
+  - Document performance optimization strategies
+  - Optional: Lighthouse CI for automated audits (requires hosted preview)
 
 ## Notes
 

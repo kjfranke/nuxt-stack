@@ -1,0 +1,32 @@
+.sitemap{
+    white-space: nowrap;
+}
+
+.sitemap__link{
+    display: block;
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+}
+
+.sitemap__link::before{
+    background-color: var(--color-brand-2);
+    bottom: 0;
+    content: '';
+    height: 0.6rem;
+    left: 0;
+    margin: auto;
+    mask-image: url('~layers/assets/icons/pointer.svg');
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    position: absolute;
+    top: 0;
+    width: 0.6rem;
+}
+
+@media (--tablet-plus){
+
+    .sitemap__list{
+        columns: 2;
+        column-gap: 2rem;
+    }
+}

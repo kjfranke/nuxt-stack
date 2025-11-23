@@ -19,6 +19,6 @@ useSeoMeta({
 </template>
 
 <style>
-@import url('~layers/app/pages/index.css');
-@import url('~layers/app/pages/design-system.css');
+@import url('~layers/pages/index.css');
+@import url('~layers/pages/design-system.css');
 </style>

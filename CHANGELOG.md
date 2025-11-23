@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- SEO Module (@nuxtjs/seo)
+
+  Installed comprehensive SEO suite including robots.txt, sitemap.xml, OG images, schema.org, and SEO utilities
+  Configured for static site generation (compatible with Netlify)
+  Added AI bot blocking in robots.txt
+  Site URL and name configurable via environment variables:
+  NUXT_PUBLIC_SITE_URL - defaults to https://example.com
+  NUXT_PUBLIC_SITE_NAME - defaults to Nuxt Stack
+  Security Module (nuxt-security)
+
+  Migrated from manual netlify.toml headers to nuxt-security module
+  Implemented OWASP-recommended security headers:
+  Content Security Policy (CSP) configured for Nuxt and Iconify
+  HSTS with preload support
+  XSS protection and frame options
+  Referrer policy and permissions policy
+  Documentation Updates
+
+  Added SEO section to README with features list
+  Documented new environment variables
+  Updated COPILOT_INSTRUCTIONS.md
+  Maintained documentation for improved layer aliases (~layers and ~~layers)
+
 ## 0.3.0
 
 ### Minor Changes

@@ -68,10 +68,17 @@ export default defineNuxtModule({
           }
         }
 
-        // Add custom "layers" alias with custom resolver
+        // Add custom "~~layers" alias with custom resolver
+        existingAliases.push({
+          find: '~~layers',
+          replacement: nuxt.options.rootDir,
+          customResolver,
+        } as any)
+
+        // Add custom "~layers" alias with custom resolver
         existingAliases.push({
           find: '~layers',
-          replacement: nuxt.options.rootDir,
+          replacement: nuxt.options.srcDir,
           customResolver,
         } as any)
 

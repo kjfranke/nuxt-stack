@@ -1,0 +1,16 @@
+export default {
+  'mobile': '(width < 40em)',
+  'mobile-phablet': '(width < 48em)',
+  'mobile-tablet': '(width < 64em)',
+  'mobile-desktop': '(width < 80em)',
+  'phablet': '(40em <= width < 48em)',
+  'phablet-tablet': '(40em <= width < 64em)',
+  'phablet-desktop': '(40em <= width < 80em)',
+  'phablet-plus': '(width >= 40em)',
+  'tablet': '(48em <= width < 64em)',
+  'tablet-desktop': '(48em <= width < 80em)',
+  'tablet-plus': '(width >= 48em)',
+  'desktop': '(64em <= width < 80em)',
+  'desktop-plus': '(width >= 64em)',
+  'widescreen-plus': '(width >= 80em)',
+}

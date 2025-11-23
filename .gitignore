@@ -21,7 +21,7 @@ logs
 
 # Local env files
 .env
-!.env.example
+!.env.dist
 
 # Local Netlify folder
 .netlify

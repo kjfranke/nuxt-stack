@@ -1,0 +1,66 @@
+.styleguide-colors strong {
+  text-transform: capitalize;
+}
+
+.styleguide-colors__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+}
+
+.styleguide-colors__list li {
+  margin: 0 1rem 2rem 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.styleguide-colors button {
+  all: unset;
+  cursor: pointer;
+}
+
+.styleguide-colors button:hover .styleguide-colors__label,
+.styleguide-colors button:focus .styleguide-colors__label,
+.styleguide-colors button:active .styleguide-colors__label {
+  opacity: 1;
+}
+
+.styleguide-colors__color {
+  border: 0.3rem dashed rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  width: 10rem;
+  z-index: 1;
+}
+
+.styleguide-colors__color::before{
+  content: '';
+  display: block;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.styleguide-colors__label {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 2rem;
+  color: #000;
+  left: 50%;
+  padding: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease-in;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.styleguide-colors__label-name,
+.styleguide-colors__label-color {
+  background: transparent;
+  display: block;
+}
+
+.styleguide-colors__label-color::before {
+  content: attr(data-color);
+}

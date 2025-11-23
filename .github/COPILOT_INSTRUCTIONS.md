@@ -217,36 +217,38 @@ import Navigation from './Navigation.vue'
 **Component CSS Import (with ~layers alias - recommended):**
 ```vue
 <style>
-@import url('~layers/app/components/ComponentName.css');
+@import url('~layers/components/ComponentName.css');
 </style>
 ```
 
 **Page CSS Import:**
 ```vue
 <style>
-@import url('~layers/app/pages/pagename.css');
+@import url('~layers/pages/pagename.css');
 </style>
 ```
 
 **Layout CSS Import:**
 ```vue
 <style>
-@import url('~layers/app/layouts/layoutname.css');
+@import url('~layers/layouts/layoutname.css');
 </style>
 ```
 
-**Note on ~layers alias:**
-- The `~layers` alias resolves imports across all Nuxt layers (base, devtools, consumer project)
-- Uses custom resolver that checks each layer for the file and returns the first match
+**Note on layer aliases:**
+- **`~layers`** - Points to each layer's `app/` directory (for components, pages, layouts, assets)
+- **`~~layers`** - Points to each layer's root directory (for modules, configs, etc.)
+- Both aliases use a custom resolver that checks each layer for the file and returns the first match
 - Implemented in `src/base/modules/00_layer-alias/index.ts`
-- Compatible with Nuxt 4.2+ (updated to preserve Nuxt's internal aliases)
+- Compatible with Nuxt 4.2+ (updated to preserve Nuxt's internal aliases like `#app/entry`)
+- Makes cross-layer imports simple without relative path complexity
 
 **Global Assets Import (app.vue):**
 ```vue
 <style>
-@import url("~/assets/css/vars.css");
-@import url("~/assets/css/root.css");
-@import url("~/assets/css/text.css");
+@import url("~layers/assets/css/vars.css");
+@import url("~layers/assets/css/root.css");
+@import url("~layers/assets/css/text.css");
 /* etc. */
 </style>
 ```
@@ -567,8 +569,8 @@ export default defineNuxtConfig({
 ```vue
 <script setup lang="ts">
 // Lazy load components that aren't immediately visible
-const Recensies = defineAsyncComponent(() => import('~/components/Recensies.vue'))
-const ContactForm = defineAsyncComponent(() => import('~/components/ContactForm.vue'))
+const Recensies = defineAsyncComponent(() => import('~layers/components/Recensies.vue'))
+const ContactForm = defineAsyncComponent(() => import('~layers/components/ContactForm.vue'))
 </script>
 ```
 

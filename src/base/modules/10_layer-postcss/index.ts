@@ -19,7 +19,7 @@ export default defineNuxtModule({
     let mq = {}, mediaQueriesPath
 
     layersCopy.forEach((layer) => {
-      const mqPath = `${layer.config.srcDir}/assets/css/tokens/media-queries.module.ts`
+      const mqPath = `${layer.config.srcDir}/assets/css/tokens/media-queries.module.js`
       if (existsSync(mqPath)) {
         mediaQueriesPath = mqPath
       }

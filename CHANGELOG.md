@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+### Patch Changes
+
+- Fix path for cutsom media querie names
+
 ## 0.4.0
 
 ### Minor Changes
